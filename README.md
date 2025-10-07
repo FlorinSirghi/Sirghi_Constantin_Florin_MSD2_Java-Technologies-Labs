@@ -1,1 +1,3 @@
-"# S-rghi_Constantin_Florin_MSD2_Java-Technologies-Labs" 
+# Sirghi_Constantin_Florin_MSD2_Java-Technologies-Labs
+
+Lab1 - Completed: Compulsory, Homework
