@@ -1,0 +1,13 @@
+db:
+  useH2: true
+  host: 127.0.0.1
+  port: 5432
+  name: lab2_dev
+  user: sa
+  password: ""
+
+spring:
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data-dev.sql

@@ -45,16 +45,30 @@ public class ControllerServlet extends HttpServlet {
                 method, ip, ua, langs, choice));
     }
 
+    private boolean IsBrowserUA(String ua) {
+        return ua.contains("Chrome") || ua.contains("AppleWebKit") || ua.contains("Mozilla");
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String choice = req.getParameter("choice");
-        if (choice == null) choice = "";
-        logRequest(req, choice);
+        String ua = req.getHeader("User-Agent");
+        if(IsBrowserUA(ua)) {
+            String choice = req.getParameter("choice");
+            if (choice == null) choice = "";
+            logRequest(req, choice);
 
-        String target = "/page1.html";
-        if ("2".equals(choice)) target = "/page2.html";
-        resp.sendRedirect(req.getContextPath() + target);
+            String target = "/page1.html";
+            if ("2".equals(choice)) target = "/page2.html";
+            resp.sendRedirect(req.getContextPath() + target);
+        }
+        else {
+            String value = req.getParameter("value");
+            if (value == null) value = "";
+            logRequest(req, value);
+            resp.setContentType("text/plain;charset=UTF-8");
+            resp.getWriter().print(value);
+        }
     }
 
     @Override

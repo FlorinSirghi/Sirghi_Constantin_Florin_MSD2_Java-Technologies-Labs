@@ -1,7 +1,7 @@
 import requests
 
 resp = requests.get(
-    "http://localhost:8080/Lab1_war_exploded/api/echo",
+    "http://localhost:8080/Lab1_war_exploded/route",
     params={"value": "1"},
     headers={
         "User-Agent": "MyPythonClient/0.1",

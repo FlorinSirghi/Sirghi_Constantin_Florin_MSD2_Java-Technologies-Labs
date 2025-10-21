@@ -1,0 +1,18 @@
+db:
+  useH2: false
+  host: localhost
+  port: 5432
+  name: lab2
+  user: java
+  password: java
+
+spring:
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data-prod.sql
+
+management:
+  endpoint:
+    health:
+      show-details: when_authorized
