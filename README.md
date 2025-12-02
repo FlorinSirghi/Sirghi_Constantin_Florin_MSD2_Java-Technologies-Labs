@@ -6,5 +6,7 @@ Lab3 - Completed: Compulsory, Homework
 Lab4 - Completed: Compulsory, Homework  
 Lab5 - Completed: Compulsory, Homework  
 Lab6 - Completed: Compulsory, Homework  
-Lab7 -  
-Lab8 -  
+Lab7 - Completed: Compulsory, Homework  
+Lab8 - Completed: Compulsory, Homework  
+Lab9 -  
+Lab10 -  
