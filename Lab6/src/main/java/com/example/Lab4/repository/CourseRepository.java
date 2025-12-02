@@ -18,4 +18,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     @Transactional
     @Query("UPDATE Course c SET c.instructor = null WHERE c.instructor.id = :instructorId")
     int removeInstructorFromCourses(Long instructorId);
+
+    java.util.Optional<Course> findByCode(String code);
 }

@@ -57,3 +57,21 @@ CREATE TABLE IF NOT EXISTS student_preferences (
     version BIGINT DEFAULT 0,
     CONSTRAINT uq_student_course UNIQUE (student_id, course_id)
 );
+
+CREATE TABLE IF NOT EXISTS grades (
+    id SERIAL PRIMARY KEY,
+    student_id INTEGER NOT NULL REFERENCES students(id) ON DELETE CASCADE,
+    course_id INTEGER NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
+    grade DOUBLE PRECISION NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uq_student_course_grade UNIQUE (student_id, course_id)
+);
+
+CREATE TABLE IF NOT EXISTS instructor_preferences (
+    id SERIAL PRIMARY KEY,
+    instructor_id INTEGER NOT NULL REFERENCES instructors(id) ON DELETE CASCADE,
+    optional_course_id INTEGER NOT NULL REFERENCES courses(id) ON DELETE CASCADE,
+    compulsory_course_abbr VARCHAR(50) NOT NULL,
+    percentage DOUBLE PRECISION NOT NULL CHECK (percentage >= 0 AND percentage <= 100),
+    CONSTRAINT uq_instructor_course_compulsory UNIQUE (instructor_id, optional_course_id, compulsory_course_abbr)
+);
