@@ -1,0 +1,17 @@
+groups:
+  - name: stablematch_alerts
+    interval: 10s
+    rules:
+      - alert: HighMemoryUsage
+        expr: avg(jvm_memory_used_bytes{area="heap"}) > 8589934592
+        for: 5m
+        labels:
+          severity: warning
+          service: StableMatch
+        annotations:
+          summary: "Memory usage has exceeded 8GB threshold"
+          description: "Memory usage is {{ $value }} bytes ({{ $value | humanize1024 }}), which exceeds the 8GB threshold. Service: {{ $labels.service }}"
+
+
+
+

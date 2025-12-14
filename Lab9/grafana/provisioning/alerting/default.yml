@@ -1,0 +1,5 @@
+apiVersion: 1
+
+# Alerting provisioning configuration
+# Note: Grafana unified alerting doesn't support direct YAML provisioning
+# Use the setup scripts or configure alerts via UI/API

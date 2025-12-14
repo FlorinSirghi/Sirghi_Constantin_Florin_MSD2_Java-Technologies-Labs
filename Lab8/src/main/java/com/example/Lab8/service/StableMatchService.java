@@ -3,6 +3,9 @@ package com.example.Lab8.service;
 import com.example.Lab8.dto.StableMatchRequest;
 import com.example.Lab8.dto.StableMatchResponse;
 import com.example.Lab8.model.Assignment;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -19,8 +22,31 @@ public class StableMatchService {
     
     private final Map<Long, Assignment> assignments = new ConcurrentHashMap<>();
     private final AtomicLong idGenerator = new AtomicLong(1);
+    private final Counter stableMatchCounter;
+    private final Timer stableMatchTimer;
+
+    public StableMatchService(Counter stableMatchCounter, Timer stableMatchTimer) {
+        this.stableMatchCounter = stableMatchCounter;
+        this.stableMatchTimer = stableMatchTimer;
+    }
 
     public StableMatchResponse performRandomMatching(StableMatchRequest request) {
+        log.info("Starting StableMatch algorithm execution");
+        stableMatchCounter.increment();
+        
+        Timer.Sample sample = Timer.start();
+        try {
+            StableMatchResponse response = performMatching(request);
+            sample.stop(stableMatchTimer);
+            return response;
+        } catch (Exception e) {
+            sample.stop(stableMatchTimer);
+            log.error("Error during StableMatch algorithm execution", e);
+            throw e;
+        }
+    }
+    
+    private StableMatchResponse performMatching(StableMatchRequest request) {
         log.info("Performing random matching for {} students and {} courses", 
                 request.getStudents().size(), request.getCourses().size());
         
@@ -103,6 +129,7 @@ public class StableMatchService {
         response.setStatus("success");
         response.setMessage("Random matching completed successfully");
         
+        log.info("StableMatch algorithm execution completed successfully");
         return response;
     }
 

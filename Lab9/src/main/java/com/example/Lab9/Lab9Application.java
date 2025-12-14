@@ -1,4 +1,4 @@
-package com.example.Lab8;
+package com.example.Lab9;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,15 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class Lab8Application {
+public class Lab9Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Lab8Application.class, args);
+		SpringApplication.run(Lab9Application.class, args);
 	}
 
 }
-
-
-
-
-
