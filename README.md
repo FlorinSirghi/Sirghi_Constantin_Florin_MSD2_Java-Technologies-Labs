@@ -8,5 +8,5 @@ Lab5 - Completed: Compulsory, Homework
 Lab6 - Completed: Compulsory, Homework  
 Lab7 - Completed: Compulsory, Homework  
 Lab8 - Completed: Compulsory, Homework  
-Lab9 -  
-Lab10 -  
+Lab9 - Completed: Compulsory, Homework    
+Lab10 - Completed: Compulsory, Homework     
